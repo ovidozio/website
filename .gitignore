@@ -14,6 +14,7 @@ yarn-error.log*
 pnpm-debug.log*
 firebase-debug.log
 
+package-lock.json
 
 # environment variables
 .env
