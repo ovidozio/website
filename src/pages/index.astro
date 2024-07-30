@@ -1,9 +1,55 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Greeting from '../components/Greeting';
+import CollectionItem from '../components/CollectionItem.astro';
+
 const pageTitle = "Home Page";
+const collectionItems = [
+    {
+        src_img: "/favicon.svg",
+        title: "First Item",
+        description: "Description for the first item.",
+        link: "/posts/post-1"
+    },
+    {
+        src_img: "/favicon.svg",
+        title: "Second Item",
+        description: "Description for the second item.",
+        link: "/posts/post-2"
+    },
+    {
+        src_img: "/favicon.svg",
+        title: "Third Item",
+        description: "Description for the third item.",
+        link: "/posts/post-3"
+    }
+];
 ---
 <BaseLayout pageTitle={pageTitle}>
-  <h2>My awesome blog subtitle</h2>
-  <Greeting client:load messages={["Hej", "Hallo", "Hola", "Habari"]} />
+    <h2>My awesome blog subtitle</h2>
+    <Greeting client:load messages={["Hej", "Hallo", "Hola", "Habari"]} />
+
+    <div class="collection">
+        {collectionItems.map(item => (
+        <CollectionItem
+            src_img={item.src_img}
+            title={item.title}
+            description={item.description}
+            link={item.link}
+        />
+        ))}
+    </div>
+
+    <style>
+    .collection {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-column-gap: 16px;
+        background-color: transparent;
+        width: 100%;
+        box-sizing: border-box;
+        margin: 0 auto;
+    }
+    </style>
 </BaseLayout>
+
